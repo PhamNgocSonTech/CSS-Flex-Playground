@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <title>CSS Flexbox - Hướng Dẫn Đầy Đủ</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎨 CSS Flexbox</h1>
+        <p class="subtitle">Từ Cơ Bản Đến Nâng Cao - Hướng Dẫn Đầy Đủ</p>
+
+        <!-- PHẦN 1: GIỚI THIỆU -->
+        <div class="section">
+            <h2>📚 1. Flexbox Là Gì?</h2>
+            <div class="theory">
+                <p><strong>Flexbox</strong> (Flexible Box Layout) là một module CSS giúp thiết kế layout linh hoạt, dễ
+                    dàng căn chỉnh và phân phối không gian giữa các phần tử.</p>
+                <p style="margin-top: 10px;"><strong>Ưu điểm:</strong></p>
+                <ul style="margin-left: 25px; margin-top: 10px;">
+                    <li>✅ Căn chỉnh phần tử dễ dàng</li>
+                    <li>✅ Phân phối không gian tự động</li>
+                    <li>✅ Responsive tốt</li>
+                    <li>✅ Thay đổi thứ tự phần tử không cần thay HTML</li>
+                </ul>
+            </div>
+
+            <div class="code">
+                /* Cú pháp cơ bản */
+                .container {
+                display: flex;
+                }</div>
+
+            <div class="demo-box">
+                <span class="label">Demo Cơ Bản</span>
+                <div class="flex-container basic-flex">
+                    <div class="flex-item">Item 1</div>
+                    <div class="flex-item">Item 2</div>
+                    <div class="flex-item">Item 3</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHẦN 2: FLEX DIRECTION -->
+        <div class="section">
+            <h2>🔄 2. Flex Direction - Hướng Sắp Xếp</h2>
+            <div class="theory">
+                <p>Thuộc tính <span class="highlight">flex-direction</span> xác định hướng sắp xếp các item.</p>
+            </div>
+
+            <div class="code">
+                flex-direction: row; /* Ngang (mặc định) */
+                flex-direction: row-reverse; /* Ngang ngược lại */
+                flex-direction: column; /* Dọc */
+                flex-direction: column-reverse;/* Dọc ngược lại */</div>
+
+            <div class="demo-box">
+                <h3>row (mặc định)</h3>
+                <div class="flex-container flex-row">
+                    <div class="flex-item">1</div>
+                    <div class="flex-item">2</div>
+                    <div class="flex-item">3</div>
+                </div>
+
+                <h3>row-reverse</h3>
+                <div class="flex-container flex-row-reverse">
+                    <div class="flex-item">1</div>
+                    <div class="flex-item">2</div>
+                    <div class="flex-item">3</div>
+                </div>
+
+                <h3>column</h3>
+                <div class="flex-container flex-column">
+                    <div class="flex-item">1</div>
+                    <div class="flex-item">2</div>
+                    <div class="flex-item">3</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHẦN 3: JUSTIFY CONTENT -->
+        <div class="section">
+            <h2>↔️ 3. Justify Content - Căn Chỉnh Theo Trục Chính</h2>
+            <div class="theory">
+                <p>Thuộc tính <span class="highlight">justify-content</span> căn chỉnh items theo trục chính (main
+                    axis).</p>
+            </div>
+
+            <div class="code">
+                justify-content: flex-start; /* Bắt đầu (mặc định) */
+                justify-content: flex-end; /* Kết thúc */
+                justify-content: center; /* Giữa */
+                justify-content: space-between;/* Khoảng cách đều, 2 đầu sát biên */
+                justify-content: space-around; /* Khoảng cách đều xung quanh */
+                justify-content: space-evenly; /* Khoảng cách đều hoàn toàn */</div>
+
+            <div class="demo-box">
+                <h3>flex-start</h3>
+                <div class="flex-container justify-start">
+                    <div class="flex-item">1</div>
+                    <div class="flex-item">2</div>
+                    <div class="flex-item">3</div>
+                </div>
+
+                <h3>center</h3>
+                <div class="flex-container justify-center">
+                    <div class="flex-item">1</div>
+                    <div class="flex-item">2</div>
+                    <div class="flex-item">3</div>
+                </div>
+
+                <h3>space-between</h3>
+                <div class="flex-container justify-between">
+                    <div class="flex-item">1</div>
+                    <div class="flex-item">2</div>
+                    <div class="flex-item">3</div>
+                </div>
+
+                <h3>space-evenly</h3>
+                <div class="flex-container justify-evenly">
+                    <div class="flex-item">1</div>
+                    <div class="flex-item">2</div>
+                    <div class="flex-item">3</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHẦN 4: ALIGN ITEMS -->
+        <div class="section">
+            <h2>↕️ 4. Align Items - Căn Chỉnh Theo Trục Phụ</h2>
+            <div class="theory">
+                <p>Thuộc tính <span class="highlight">align-items</span> căn chỉnh items theo trục phụ (cross axis).</p>
+            </div>
+
+            <div class="code">
+                align-items: flex-start; /* Đầu */
+                align-items: flex-end; /* Cuối */
+                align-items: center; /* Giữa */
+                align-items: stretch; /* Kéo dài (mặc định) */
+                align-items: baseline; /* Căn theo baseline text */</div>
+
+            <div class="demo-box">
+                <h3>flex-start</h3>
+                <div class="flex-container align-start">
+                    <div class="flex-item">Cao 1</div>
+                    <div class="flex-item" style="padding: 40px 20px;">Cao 2</div>
+                    <div class="flex-item">Cao 3</div>
+                </div>
+
+                <h3>center</h3>
+                <div class="flex-container align-center">
+                    <div class="flex-item">Cao 1</div>
+                    <div class="flex-item" style="padding: 40px 20px;">Cao 2</div>
+                    <div class="flex-item">Cao 3</div>
+                </div>
+
+                <h3>stretch</h3>
+                <div class="flex-container align-stretch">
+                    <div class="flex-item">Kéo dài 1</div>
+                    <div class="flex-item">Kéo dài 2</div>
+                    <div class="flex-item">Kéo dài 3</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHẦN 5: FLEX WRAP -->
+        <div class="section">
+            <h2>📦 5. Flex Wrap - Xuống Dòng</h2>
+            <div class="theory">
+                <p>Thuộc tính <span class="highlight">flex-wrap</span> quyết định items có được xuống dòng hay không.
+                </p>
+            </div>
+
+            <div class="code">
+                flex-wrap: nowrap; /* Không xuống dòng (mặc định) */
+                flex-wrap: wrap; /* Xuống dòng */
+                flex-wrap: wrap-reverse; /* Xuống dòng ngược */</div>
+
+            <div class="demo-box">
+                <h3>nowrap (không xuống dòng)</h3>
+                <div class="flex-container flex-nowrap">
+                    <div class="flex-item">Item 1</div>
+                    <div class="flex-item">Item 2</div>
+                    <div class="flex-item">Item 3</div>
+                    <div class="flex-item">Item 4</div>
+                    <div class="flex-item">Item 5</div>
+                    <div class="flex-item">Item 6</div>
+                </div>
+
+                <h3>wrap (xuống dòng)</h3>
+                <div class="flex-container flex-wrap">
+                    <div class="flex-item">Item 1</div>
+                    <div class="flex-item">Item 2</div>
+                    <div class="flex-item">Item 3</div>
+                    <div class="flex-item">Item 4</div>
+                    <div class="flex-item">Item 5</div>
+                    <div class="flex-item">Item 6</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHẦN 6: FLEX GROW/SHRINK/BASIS -->
+        <div class="section">
+            <h2>📏 6. Flex Grow, Shrink, Basis</h2>
+            <div class="theory">
+                <p><span class="highlight">flex-grow</span>: Tỷ lệ phát triển khi có không gian thừa</p>
+                <p><span class="highlight">flex-shrink</span>: Tỷ lệ co lại khi không đủ không gian</p>
+                <p><span class="highlight">flex-basis</span>: Kích thước ban đầu</p>
+            </div>
+
+            <div class="code">
+                .item-1 { flex-grow: 1; } /* Chiếm 1 phần */
+                .item-2 { flex-grow: 2; } /* Chiếm 2 phần */
+                .item-3 { flex-grow: 3; } /* Chiếm 3 phần */
+
+                /* Shorthand */
+                flex: 1; /* = flex-grow: 1; flex-shrink: 1; flex-basis: 0%; */</div>
+
+            <div class="demo-box">
+                <h3>flex-grow</h3>
+                <div class="flex-container">
+                    <div class="flex-item item-grow-1">grow: 1</div>
+                    <div class="flex-item item-grow-2">grow: 2</div>
+                    <div class="flex-item item-grow-3">grow: 3</div>
+                </div>
+
+                <h3>flex-shrink: 0 (không co lại)</h3>
+                <div class="flex-container">
+                    <div class="flex-item item-shrink-0">Không co - 200px</div>
+                    <div class="flex-item item-grow-1">Co được</div>
+                    <div class="flex-item item-grow-1">Co được</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHẦN 7: GAP -->
+        <div class="section">
+            <h2>📐 7. Gap - Khoảng Cách</h2>
+            <div class="theory">
+                <p>Thuộc tính <span class="highlight">gap</span> tạo khoảng cách giữa các items (thay thế margin).</p>
+            </div>
+
+            <div class="code">
+                gap: 20px; /* Khoảng cách chung */
+                row-gap: 20px; /* Khoảng cách dòng */
+                column-gap: 30px; /* Khoảng cách cột */
+                gap: 20px 30px; /* row-gap column-gap */</div>
+
+            <div class="demo-box">
+                <h3>gap: 20px</h3>
+                <div class="flex-container gap-demo flex-wrap">
+                    <div class="flex-item">Item 1</div>
+                    <div class="flex-item">Item 2</div>
+                    <div class="flex-item">Item 3</div>
+                    <div class="flex-item">Item 4</div>
+                    <div class="flex-item">Item 5</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHẦN 8: ORDER -->
+        <div class="section">
+            <h2>🔢 8. Order - Thay Đổi Thứ Tự</h2>
+            <div class="theory">
+                <p>Thuộc tính <span class="highlight">order</span> thay đổi thứ tự hiển thị mà không cần đổi HTML.</p>
+            </div>
+
+            <div class="code">
+                .item-1 { order: 3; } /* Hiển thị cuối */
+                .item-2 { order: 1; } /* Hiển thị đầu */
+                .item-3 { order: 2; } /* Hiển thị giữa */</div>
+
+            <div class="demo-box">
+                <h3>Thứ tự trong HTML: 1, 2, 3</h3>
+                <h3>Thứ tự hiển thị: 2, 3, 1</h3>
+                <div class="flex-container">
+                    <div class="flex-item order-3">HTML: 1<br>Order: 3</div>
+                    <div class="flex-item order-1">HTML: 2<br>Order: 1</div>
+                    <div class="flex-item order-2">HTML: 3<br>Order: 2</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHẦN 9: ỨNG DỤNG THỰC TÊ -->
+        <div class="section">
+            <h2>💼 9. Ứng Dụng Thực Tế</h2>
+
+            <h3>🎯 Navigation Bar</h3>
+            <div class="navbar">
+                <div class="nav-flex">
+                    <div class="nav-logo">MyLogo</div>
+                    <ul class="nav-menu">
+                        <li>Trang chủ</li>
+                        <li>Sản phẩm</li>
+                        <li>Liên hệ</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="code">
+                .nav-flex {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                }
+                .nav-menu {
+                display: flex;
+                gap: 30px;
+                }</div>
+
+            <h3 style="margin-top: 30px;">💳 Pricing Cards</h3>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Basic</h3>
+                    <div class="price">$9</div>
+                    <p>Gói cơ bản cho cá nhân</p>
+                </div>
+                <div class="pricing-card">
+                    <h3>Pro</h3>
+                    <div class="price">$29</div>
+                    <p>Gói chuyên nghiệp</p>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">$99</div>
+                    <p>Gói doanh nghiệp</p>
+                </div>
+            </div>
+            <div class="code">
+                .pricing-cards {
+                display: flex;
+                gap: 20px;
+                flex-wrap: wrap;
+                }
+                .pricing-card {
+                flex: 1;
+                min-width: 250px;
+                }</div>
+
+            <h3 style="margin-top: 30px;">📱 Center Content (Trick phổ biến)</h3>
+            <div class="demo-box">
+                <div class="flex-container"
+                    style="display: flex; justify-content: center; align-items: center; min-height: 200px; background: linear-gradient(135deg, #667eea, #764ba2);">
+                    <div
+                        style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                        <h3 style="margin: 0; color: #667eea;">Centered Content</h3>
+                        <p style="margin: 10px 0 0 0;">Căn giữa hoàn hảo!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="code">
+                /* Căn giữa hoàn hảo cả ngang và dọc */
+                .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                }</div>
+        </div>
+
+        <!-- PHẦN 10: TỔNG KẾT -->
+        <div class="section">
+            <h2>📝 10. Tổng Kết & Cheat Sheet</h2>
+            <div class="theory">
+                <h3>🎯 Properties cho Container (Parent)</h3>
+                <div class="code" style="font-size: 0.95em;">
+                    display: flex;
+                    flex-direction: row | column | row-reverse | column-reverse;
+                    flex-wrap: nowrap | wrap | wrap-reverse;
+                    justify-content: flex-start | center | flex-end | space-between | space-around | space-evenly;
+                    align-items: flex-start | center | flex-end | stretch | baseline;
+                    align-content: flex-start | center | flex-end | space-between | space-around | stretch;
+                    gap: 20px;</div>
+
+                <h3 style="margin-top: 20px;">🎯 Properties cho Items (Children)</h3>
+                <div class="code" style="font-size: 0.95em;">
+                    flex-grow: 0 (mặc định) | số dương;
+                    flex-shrink: 1 (mặc định) | số dương;
+                    flex-basis: auto | độ dài;
+                    flex: 1; /* shorthand */
+                    order: 0 (mặc định) | số nguyên;
+                    align-self: auto | flex-start | center | flex-end | stretch;</div>
+
+                <h3 style="margin-top: 20px;">💡 Tips & Best Practices</h3>
+                <ul style="margin-left: 25px; line-height: 2;">
+                    <li>✅ Dùng <code>gap</code> thay vì <code>margin</code> cho khoảng cách</li>
+                    <li>✅ Kết hợp <code>justify-content: center</code> và <code>align-items: center</code> để căn giữa
+                    </li>
+                    <li>✅ Dùng <code>flex: 1</code> để items chia đều không gian</li>
+                    <li>✅ <code>flex-wrap: wrap</code> cho responsive tốt hơn</li>
+                    <li>✅ <code>min-width</code> ngăn items bị thu quá nhỏ</li>
+                </ul>
+            </div>
+        </div>
+
+        <div
+            style="text-align: center; padding: 30px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 15px; color: white; margin-top: 40px;">
+            <h2 style="color: white; margin-bottom: 15px;">🎉 Chúc bạn thành công với Flexbox!</h2>
+            <p style="font-size: 1.1em;">Thực hành nhiều là cách tốt nhất để thành thạo 💪</p>
+        </div>
+    </div>
+</body>
+
+</html>
