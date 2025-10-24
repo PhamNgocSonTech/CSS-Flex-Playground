@@ -1,0 +1,382 @@
+<div class="container">
+    <h1>🎨 CSS Flexbox Nâng Cao</h1>
+    <p class="subtitle">Học Qua Tương Tác - Thấy Ngay Sự Khác Biệt</p>
+
+    <!-- PHẦN 1: EQUAL HEIGHT CARDS -->
+    <div class="section">
+        <h2>📊 1. Cards Có Chiều Cao Bằng Nhau</h2>
+        <div class="theory">
+            <p>Một trong những vấn đề phổ biến nhất: làm sao để các cards có <strong>chiều cao bằng nhau</strong>
+                khi nội dung khác nhau?</p>
+            <p style="margin-top: 10px;"><strong>Giải pháp:</strong> Sử dụng <span class="highlight">align-items:
+                    stretch</span> (mặc định) hoặc <span class="highlight">align-self</span></p>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>🎛️ Chọn thuộc tính align-items:</label>
+                <div class="btn-group">
+                    <button class="btn active" onclick="setAlignItems('stretch', this)">stretch (mặc định)</button>
+                    <button class="btn" onclick="setAlignItems('flex-start', this)">flex-start</button>
+                    <button class="btn" onclick="setAlignItems('flex-end', this)">flex-end</button>
+                    <button class="btn" onclick="setAlignItems('center', this)">center</button>
+                </div>
+            </div>
+            <div class="property-display" id="currentProperty1">
+                align-items: stretch;
+            </div>
+        </div>
+
+        <div class="demo-container">
+            <div class="card-container" id="cardContainer1">
+                <div class="card">
+                    <div class="card-image">💎</div>
+                    <div class="card-title">Basic Plan</div>
+                    <div class="card-description">Gói cơ bản cho người mới bắt đầu.</div>
+                    <div class="card-price">$9/tháng</div>
+                    <button class="card-button">Chọn gói</button>
+                </div>
+                <div class="card">
+                    <div class="card-image">🚀</div>
+                    <div class="card-title">Pro Plan</div>
+                    <div class="card-description">Gói chuyên nghiệp với nhiều tính năng nâng cao. Bao gồm hỗ trợ
+                        24/7, không giới hạn dung lượng, và nhiều công cụ marketing mạnh mẽ.</div>
+                    <div class="card-price">$29/tháng</div>
+                    <button class="card-button">Chọn gói</button>
+                </div>
+                <div class="card">
+                    <div class="card-image">👑</div>
+                    <div class="card-title">Enterprise</div>
+                    <div class="card-description">Giải pháp toàn diện cho doanh nghiệp lớn.</div>
+                    <div class="card-price">$99/tháng</div>
+                    <button class="card-button">Chọn gói</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <strong>💡 Giải thích:</strong><br>
+            • <strong>stretch</strong>: Cards tự động kéo dài để cùng chiều cao → Nội dung cân đối<br>
+            • <strong>flex-start/center/flex-end</strong>: Cards chỉ cao bằng nội dung của chúng → Lỗ hổng không đều
+        </div>
+
+        <div class="code">.card-container {
+            display: flex;
+            align-items: stretch; /* Mặc định - cards cùng chiều cao */
+            gap: 20px;
+            }
+
+            .card {
+            flex: 1; /* Chia đều chiều rộng */
+            display: flex;
+            flex-direction: column; /* Quan trọng! */
+            }
+
+            /* Đẩy button xuống cuối card */
+            .card-button {
+            margin-top: auto;
+            }</div>
+    </div>
+
+    <!-- PHẦN 2: FLEX DIRECTION TRONG CARD -->
+    <div class="section">
+        <h2>🔄 2. Flex Direction Bên Trong Card</h2>
+        <div class="theory">
+            <p>Để button luôn nằm ở <strong>cuối card</strong> dù nội dung dài hay ngắn, ta cần:</p>
+            <ul style="margin-left: 25px; margin-top: 10px;">
+                <li>✅ Card có <code>display: flex</code> và <code>flex-direction: column</code></li>
+                <li>✅ Button có <code>margin-top: auto</code></li>
+            </ul>
+        </div>
+
+        <div class="controls">
+            <div class="toggle-container">
+                <span class="toggle-label">Card có flex-direction: column?</span>
+                <label class="toggle">
+                    <input type="checkbox" id="flexDirectionToggle" checked onchange="toggleFlexDirection()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="toggle-container">
+                <span class="toggle-label">Button có margin-top: auto?</span>
+                <label class="toggle">
+                    <input type="checkbox" id="marginAutoToggle" checked onchange="toggleMarginAuto()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="comparison">
+            <div class="comparison-item">
+                <div class="comparison-title">❌ KHÔNG CÓ flex-direction</div>
+                <div class="card" id="cardWithout" style="display: block;">
+                    <div class="card-image">📦</div>
+                    <div class="card-title">Card Thường</div>
+                    <div class="card-description">Nội dung ngắn.</div>
+                    <div class="card-price">$19/tháng</div>
+                    <button class="card-button" id="btnWithout">Button ở đây</button>
+                </div>
+            </div>
+            <div class="comparison-item">
+                <div class="comparison-title">✅ CÓ flex-direction: column</div>
+                <div class="card" id="cardWith" style="display: flex; flex-direction: column;">
+                    <div class="card-image">🎯</div>
+                    <div class="card-title">Card Flexbox</div>
+                    <div class="card-description">Nội dung ngắn.</div>
+                    <div class="card-price">$19/tháng</div>
+                    <button class="card-button" id="btnWith" style="margin-top: auto;">Button ở cuối</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="success-box">
+            <strong>✨ Kết luận:</strong> Kết hợp <code>flex-direction: column</code> và
+            <code>margin-top: auto</code> là công thức vàng cho card layout!
+        </div>
+    </div>
+
+    <!-- PHẦN 3: FLEX GROW VÀ FLEX BASIS -->
+    <div class="section">
+        <h2>📏 3. Flex Grow & Flex Basis Nâng Cao</h2>
+        <div class="theory">
+            <p>Hiểu rõ cách <strong>phân phối không gian</strong> giữa các items với flex-grow và flex-basis.</p>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>🎛️ Card 1 - flex-grow:</label>
+                <div class="btn-group">
+                    <button class="btn active" onclick="setFlexGrow(1, 1, this)">1</button>
+                    <button class="btn" onclick="setFlexGrow(1, 2, this)">2</button>
+                    <button class="btn" onclick="setFlexGrow(1, 3, this)">3</button>
+                    <button class="btn" onclick="setFlexGrow(1, 0, this)">0 (cố định)</button>
+                </div>
+            </div>
+            <div class="control-group">
+                <label>🎛️ Card 2 - flex-grow:</label>
+                <div class="btn-group">
+                    <button class="btn active" onclick="setFlexGrow(2, 1, this)">1</button>
+                    <button class="btn" onclick="setFlexGrow(2, 2, this)">2</button>
+                    <button class="btn" onclick="setFlexGrow(2, 3, this)">3</button>
+                    <button class="btn" onclick="setFlexGrow(2, 0, this)">0 (cố định)</button>
+                </div>
+            </div>
+            <div class="control-group">
+                <label>🎛️ Card 3 - flex-grow:</label>
+                <div class="btn-group">
+                    <button class="btn active" onclick="setFlexGrow(3, 1, this)">1</button>
+                    <button class="btn" onclick="setFlexGrow(3, 2, this)">2</button>
+                    <button class="btn" onclick="setFlexGrow(3, 3, this)">3</button>
+                    <button class="btn" onclick="setFlexGrow(3, 0, this)">0 (cố định)</button>
+                </div>
+            </div>
+            <div class="property-display" id="flexGrowDisplay">
+                Card 1: flex-grow: 1 | Card 2: flex-grow: 1 | Card 3: flex-grow: 1
+            </div>
+        </div>
+
+        <div class="demo-container">
+            <div class="card-container" id="flexGrowContainer" style="align-items: stretch;">
+                <div class="card" id="growCard1" style="flex-grow: 1; display: flex; flex-direction: column;">
+                    <div class="card-title">Card 1</div>
+                    <div class="card-description">flex-grow: 1</div>
+                </div>
+                <div class="card" id="growCard2" style="flex-grow: 1; display: flex; flex-direction: column;">
+                    <div class="card-title">Card 2</div>
+                    <div class="card-description">flex-grow: 1</div>
+                </div>
+                <div class="card" id="growCard3" style="flex-grow: 1; display: flex; flex-direction: column;">
+                    <div class="card-title">Card 3</div>
+                    <div class="card-description">flex-grow: 1</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <strong>💡 Công thức tính:</strong><br>
+            Nếu Card 1 có flex-grow: 2 và Card 2 có flex-grow: 1<br>
+            → Card 1 sẽ chiếm 2/3 không gian thừa, Card 2 chiếm 1/3<br>
+            → Card 1 rộng gấp đôi Card 2
+        </div>
+    </div>
+
+    <!-- PHẦN 4: ALIGN-SELF -->
+    <div class="section">
+        <h2>🎯 4. Align-Self - Căn Chỉnh Từng Item</h2>
+        <div class="theory">
+            <p><span class="highlight">align-self</span> cho phép <strong>ghi đè</strong> align-items cho từng item
+                riêng lẻ.</p>
+        </div>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>🎛️ Card Giữa - align-self:</label>
+                <div class="btn-group">
+                    <button class="btn active" onclick="setAlignSelf('stretch', this)">stretch</button>
+                    <button class="btn" onclick="setAlignSelf('flex-start', this)">flex-start</button>
+                    <button class="btn" onclick="setAlignSelf('center', this)">center</button>
+                    <button class="btn" onclick="setAlignSelf('flex-end', this)">flex-end</button>
+                </div>
+            </div>
+            <div class="property-display" id="alignSelfDisplay">
+                Card giữa: align-self: stretch;
+            </div>
+        </div>
+
+        <div class="demo-container">
+            <div class="card-container" style="align-items: stretch;">
+                <div class="card" style="display: flex; flex-direction: column;">
+                    <div class="card-title">Card 1</div>
+                    <div class="card-description">Nội dung bình thường với align-items: stretch từ container.</div>
+                </div>
+                <div class="card" id="selfAlignCard"
+                    style="align-self: stretch; display: flex; flex-direction: column;">
+                    <div class="card-title">Card 2 (Có align-self)</div>
+                    <div class="card-description">Card này có align-self riêng! Thử thay đổi để thấy sự khác biệt.
+                    </div>
+                </div>
+                <div class="card" style="display: flex; flex-direction: column;">
+                    <div class="card-title">Card 3</div>
+                    <div class="card-description">Nội dung bình thường với align-items: stretch từ container.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ Lưu ý:</strong> align-self có độ ưu tiên cao hơn align-items!
+        </div>
+    </div>
+
+    <!-- PHẦN 5: FLEX WRAP VÀ RESPONSIVE -->
+    <div class="section">
+        <h2>📱 5. Flex Wrap - Responsive Cards</h2>
+        <div class="theory">
+            <p>Kết hợp <span class="highlight">flex-wrap</span>, <span class="highlight">min-width</span> và <span
+                    class="highlight">flex</span> để tạo layout responsive hoàn hảo.</p>
+        </div>
+
+        <div class="controls">
+            <div class="toggle-container">
+                <span class="toggle-label">Bật flex-wrap: wrap?</span>
+                <label class="toggle">
+                    <input type="checkbox" id="wrapToggle" checked onchange="toggleWrap()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="toggle-container">
+                <span class="toggle-label">Bật min-width: 250px?</span>
+                <label class="toggle">
+                    <input type="checkbox" id="minWidthToggle" checked onchange="toggleMinWidth()">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div class="property-display" id="wrapDisplay">
+                flex-wrap: wrap; min-width: 250px;
+            </div>
+        </div>
+
+        <div class="demo-container">
+            <div class="card-container" id="wrapContainer" style="flex-wrap: wrap; align-items: stretch;">
+                <div class="card wrapCard"
+                    style="flex: 1 1 250px; min-width: 250px; display: flex; flex-direction: column;">
+                    <div class="card-image">1️⃣</div>
+                    <div class="card-title">Card 1</div>
+                    <div class="card-description">Thử thu nhỏ màn hình!</div>
+                </div>
+                <div class="card wrapCard"
+                    style="flex: 1 1 250px; min-width: 250px; display: flex; flex-direction: column;">
+                    <div class="card-image">2️⃣</div>
+                    <div class="card-title">Card 2</div>
+                    <div class="card-description">Cards sẽ tự động xuống dòng.</div>
+                </div>
+                <div class="card wrapCard"
+                    style="flex: 1 1 250px; min-width: 250px; display: flex; flex-direction: column;">
+                    <div class="card-image">3️⃣</div>
+                    <div class="card-title">Card 3</div>
+                    <div class="card-description">Responsive không cần media query!</div>
+                </div>
+                <div class="card wrapCard"
+                    style="flex: 1 1 250px; min-width: 250px; display: flex; flex-direction: column;">
+                    <div class="card-image">4️⃣</div>
+                    <div class="card-title">Card 4</div>
+                    <div class="card-description">Hoàn hảo cho mọi kích thước màn hình.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="code">.card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: stretch;
+            }
+
+            .card {
+            flex: 1 1 250px; /* grow shrink basis */
+            min-width: 250px; /* Ngăn card quá nhỏ */
+            display: flex;
+            flex-direction: column;
+            }</div>
+
+        <div class="success-box">
+            <strong>🎯 Best Practice:</strong><br>
+            • <code>flex: 1 1 250px</code> = Cards sẽ grow/shrink nhưng basis là 250px<br>
+            • <code>min-width: 250px</code> = Cards không bao giờ nhỏ hơn 250px<br>
+            • <code>flex-wrap: wrap</code> = Tự động xuống dòng khi không đủ chỗ
+        </div>
+    </div>
+
+    <!-- PHẦN 6: TỔNG KẾT -->
+    <div class="section">
+        <h2>🎓 6. Tổng Kết - Pattern Cho Cards Hoàn Hảo</h2>
+
+        <div class="code">/* Container */
+            .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: stretch; /* Cards cùng chiều cao */
+            }
+
+            /* Card */
+            .card {
+            flex: 1 1 250px; /* Responsive tự động */
+            min-width: 250px; /* Không cho card quá nhỏ */
+            max-width: 400px; /* Không cho card quá lớn (tùy chọn) */
+
+            display: flex;
+            flex-direction: column; /* Nội dung xếp dọc */
+            }
+
+            /* Button luôn ở cuối */
+            .card-button {
+            margin-top: auto; /* Đẩy xuống cuối */
+            }</div>
+
+        <div class="theory">
+            <h3>✅ Checklist Cards Hoàn Hảo:</h3>
+            <ul style="margin-left: 25px; line-height: 2;">
+                <li>☑️ Container có <code>display: flex</code></li>
+                <li>☑️ Container có <code>align-items: stretch</code> (mặc định)</li>
+                <li>☑️ Container có <code>flex-wrap: wrap</code> (responsive)</li>
+                <li>☑️ Container có <code>gap</code> thay vì margin</li>
+                <li>☑️ Card có <code>flex: 1 1 250px</code></li>
+                <li>☑️ Card có <code>min-width</code></li>
+                <li>☑️ Card có <code>display: flex; flex-direction: column</code></li>
+                <li>☑️ Button/CTA có <code>margin-top: auto</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 30px; background: #f8f9fa; border-radius: 15px;">
+        <p style="font-size: 1.2em; color: #667eea; font-weight: bold; margin-bottom: 15px;">
+            🎉 Chúc mừng! Bạn đã hoàn thành khóa học CSS Flexbox nâng cao!
+        </p>
+        <p style="color: #666;">
+            Hãy thực hành nhiều và áp dụng những kiến thức này vào dự án thực tế của bạn.
+        </p>
+    </div>
+</div>
+
+
+<script src="./assets/js/flex-v2.js" defer></script>
